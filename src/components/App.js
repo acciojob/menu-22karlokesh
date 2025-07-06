@@ -13,59 +13,18 @@ function App() {
   ];
 
   const [menuItems, setMenuItems] = useState(allMenuItems);
-  const [activeCategory, setActiveCategory] = useState("All");
 
   const handleFilter = (category) => {
-    setActiveCategory(category);
-    if (category === "All") {
-      setMenuItems(allMenuItems);
-    } else {
-      setMenuItems(allMenuItems.filter(item => item.category === category));
-    }
+    setMenuItems(allMenuItems.filter(item => item.category === category));
   };
-
-  const buttonStyle = (category) => ({
-    margin: "0 10px",
-    padding: "10px 15px",
-    backgroundColor: activeCategory === category ? "#007bff" : "#eee",
-    color: activeCategory === category ? "white" : "black",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  });
 
   return (
     <div id="main" style={{ textAlign: "center", margin: "20px" }}>
       <h1>Menu</h1>
       <div style={{ marginBottom: "20px" }}>
-        <button
-          id="filter-btn-all"
-          onClick={() => handleFilter("All")}
-          style={buttonStyle("All")}
-        >
-          All
-        </button>
-        <button
-          id="filter-btn-1"
-          onClick={() => handleFilter("Breakfast")}
-          style={buttonStyle("Breakfast")}
-        >
-          Breakfast
-        </button>
-        <button
-          id="filter-btn-2"
-          onClick={() => handleFilter("Lunch")}
-          style={buttonStyle("Lunch")}
-        >
-          Lunch
-        </button>
-        <button
-          id="filter-btn-3"
-          onClick={() => handleFilter("Shakes")}
-          style={buttonStyle("Shakes")}
-        >
-          Shakes
-        </button>
+        <button id="filter-btn-1" onClick={() => handleFilter("Breakfast")}>Breakfast</button>
+        <button id="filter-btn-2" onClick={() => handleFilter("Lunch")}>Lunch</button>
+        <button id="filter-btn-3" onClick={() => handleFilter("Shakes")}>Shakes</button>
       </div>
       <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
         {menuItems.map(item => (
@@ -92,7 +51,6 @@ function App() {
           </div>
         ))}
       </div>
-      <p>Now I can render any React component on any DOM node I want using ReactDOM.render</p>
     </div>
   );
 }
